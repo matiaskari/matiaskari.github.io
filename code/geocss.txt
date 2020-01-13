@@ -1,0 +1,623 @@
+html {
+    height: 100vh;
+    font-size: 1.3rem;
+    font-family: 'Abel', sans-serif, &quot;Courier New&quot;, Courier, monospace;
+}
+body {
+    margin: 0;
+    line-height: 1;
+    height: 100%;
+    width: 100%;
+    font-size: 1.3rem;
+    position: relative;
+    background-color: #fcfcfc;
+}
+
+/* Fonts start */
+h4 {
+    font-size: 1.1rem;
+}
+h5 {
+    font-size: 1.4rem;
+}
+p {
+    font-size: 1.2rem;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+li {
+    font-size: 0.9rem;
+    list-style-type: none;
+    margin-top: 0.3em;
+}
+label {
+    font-size: 1rem;
+}
+.email input {
+    font-size: 0.8rem;
+}
+footer ul {
+    padding-bottom: 0.3em;
+    margin: 0;
+}
+ul {
+    padding: 0;
+}
+/* Fonts end */
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 100vw);
+    grid-gap: 0px;
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-rows: 8%;
+    margin: 0;
+    padding: 0;
+}
+.wrapper2 {
+    display: grid;
+    grid-template-columns: repeat(1, 100vw);
+    grid-gap: 0px;
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-rows: 8%;
+}
+
+/* Navigation bar start */
+    /* Navigation bar (width &gt;= 1024px) start */
+.normal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+.normal li {
+    display: inline;
+    float: left;
+    margin: 0;
+}
+.normal li a {
+    display: block;
+    padding: 16px 16px;
+    color: rgb(60, 60, 60);
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+}
+.normal li a:hover {
+    background-color: #dfdfdf;
+}
+.active {
+    background-color: #cecece;
+}
+    /* Navigation bar (width &gt;= 1024px) end */
+
+    /* Navigation bar (width &lt; 1024px) start */
+.dropdown {
+    background-color: #f1f1f1;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.dropdown a {
+    padding: 5px 5px;
+    color: rgb(60, 60, 60);
+    font-size: 0.6rem;
+    text-align: center;
+    text-decoration: none;
+}
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 0.7rem; 
+    border: none;
+    outline: none;
+    color: rgb(60, 60, 60);
+    padding: 5px 5px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    float: none;
+    color: rgb(60, 60, 60);
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #dfdfdf;
+}
+.show {
+    display: block;
+}
+    /* Navigation bar (width &lt; 1024px) end */
+.normal {
+    display: none;
+}
+.dropdown {
+    display: inline;
+}
+nav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: #dfdfdf;
+}
+/* Navigation bar end */
+
+/* Grid elements (and header + footer) start */
+header { 
+    width: 100%;
+}
+.banner {
+    width: 100%;
+    height: auto;
+}
+.bio {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+    padding: 0% 15% 5% 15%;
+}
+.bio h5, .bio h4, .bio li {
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.1rem;
+}
+.info1 {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+    padding: 10% 20% 5% 20%;
+}
+.info1 img {
+    width: 12vw;
+}
+.info2 {
+    grid-column: 1;
+    grid-row: 4;
+    text-align: center;
+    padding: 0% 20% 5% 20%;
+}
+.info2 img {
+    width: 12vw;
+}
+.info3 {
+    grid-column: 1;
+    grid-row: 5;
+    text-align: center;
+    padding: 0% 20% 5% 20%;
+}
+.info3 img {
+    width: 12vw;
+}
+.info4 {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+    padding: 0% 15% 0% 15%;
+}
+.vid {
+    grid-column: 1;
+    grid-row: 4;
+    display: block;
+    margin: auto;
+    width: 70%;
+    padding: 30% 15% 0% 15%;
+}
+.dl {
+    grid-column: 1;
+    grid-row: 5;
+    text-align: center;
+    padding: 10% 15% 0% 15%;
+}
+footer {
+    font-size: 1.1rem;
+    text-align: right;
+    background-color: #f1f1f1;
+    border-top: 2px solid #8b8b8b;
+    padding: 0 0.5rem;
+}
+.laskuri {
+    grid-column: 1;
+    grid-row: 6;
+    text-align: center;
+    padding: 0% 20% 0% 20%;
+}
+.email {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 10% 20% 5% 20%;
+}
+.newsbox {
+    grid-column: 1;
+    grid-row: 4;
+    padding: 0% 15% 10% 15%;
+    text-align: center;
+}
+#cities {
+    width: 40%;
+    padding: 20px;
+}
+.tieto {
+    width: 33.3%;
+    margin: 0;
+    float: left;
+}
+#nimi, #kosteus, #lampotila {
+    margin-top: 8px;
+}
+/* Grid elements (and header + footer) end */
+
+.button {
+    background-color: #4986e2;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    margin: 5% 37% 0% 37%;
+}
+.button:hover {
+    background-color: #2168d1;
+}
+.button a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.button2 {
+    background-color: #4986e2;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 12px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    margin: 5% 3% 5% 3%;
+    width: 26%;
+}
+.button2:hover {
+    background-color: #2168d1;
+}
+.button2 a {
+    color: #ffffff;
+    text-decoration: none;
+}
+input[type=text], select {
+    width: 100%;
+    padding: 22px 30px;
+    margin: 18px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#some-service {
+    grid-column: 1;
+    grid-row: 5;
+    padding: 0% 10% 15% 10%;
+}
+
+@media (min-width: 320px) {
+    .dropdown a {
+        padding: 7px 7px;
+        font-size: 0.9rem;
+    }
+    .dropdown .dropbtn {
+        font-size: 1rem; 
+        padding: 7px 7px;
+    }
+    .dropdown-content a {
+        padding: 7px 7px;
+    }
+
+    .bio {
+        padding: 0% 10% 0% 10%;
+    }
+    .info1 {
+        padding: 0% 10% 0% 10%;
+    }
+    .info2 {
+        padding: 10% 10% 0% 10%;
+    }
+    .info3 {
+        padding: 15% 10% 15% 10%;
+    }
+    .info4 {
+        padding: 10% 10% 0% 10%;
+    }
+    .vid {
+        padding-top: 20%;
+    }
+    .laskuri {
+        padding: 0% 10% 5% 10%;
+    }
+    .email {
+        grid-row: 3;
+        padding: 10%;
+    }
+    .newsbox {
+        grid-row: 4;
+        padding: 0% 10% 25% 10%;
+    }
+    .button {
+        margin: 5% 30% 5% 30%;
+    }
+	
+	.dropdown a {
+        font-size: 0.6rem;
+    }
+    .dropdown .dropbtn {
+        font-size: 0.7rem; 
+    }
+    p {
+        font-size: 0.8rem;
+    }
+    h4 {
+        font-size: 0.9rem;
+    }
+    h5 {
+        font-size: 1rem;
+    }
+    li {
+        font-size: 0.7rem;
+    }
+    .email input {
+        font-size: 0.6rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 450px) {
+    .vid {
+        padding-top: 10%;
+    }
+    #some-service {
+        padding-bottom: 45%;
+    }
+}
+
+@media (min-width: 768px) {
+    .dropdown a {
+        padding: 10px 10px;
+        font-size: 0.9rem;
+    }
+    .dropdown .dropbtn {
+        font-size: 1rem; 
+        padding: 10px 10px;
+    }
+    .dropdown-content a {
+        padding: 10px 10px;
+    }
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .wrapper2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    header { 
+        grid-column: 1 / -1;
+    }
+    .bio {
+        grid-column: 1 / -1;
+        padding: 0% 20% 0% 20%;
+    }
+    .info1 {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 0% 20% 0% 20%;
+    }
+	.info1 img, .info2 img, .info3 img {
+		width: 20%;
+	}
+    .info2 {
+        grid-column: 2;
+        grid-row: 3;
+        padding: 0% 20% 0% 20%;
+    }
+	.info2 img {
+		width: 20%;
+	}
+    .info3 {
+        grid-column: 1 / -1;
+        grid-row: 4;
+        padding: 5% 25% 15% 25%;
+    }
+	.info3 img {
+		width: 20%;
+	}
+    .info4 {
+        grid-column: 1 / -1;
+        padding: 5% 20% 5% 20%;
+    }
+    .vid {
+        grid-column: 1 / -1;
+        padding-top: 5%;
+    }
+    .dl {
+        grid-column: 1 / -1;
+    }
+    .laskuri {
+        grid-column: 1 / -1;
+    }
+    .email {
+        grid-column: 1 / -1;
+        padding: 5% 20% 5% 20%;
+    }
+	.button {
+        margin: 5% 37% 0% 37%;
+    }
+    .newsbox {
+        grid-column: 1 / -1;
+        padding: 0% 20% 20% 20%;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+    h5 {
+        font-size: 1.4rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+    li {
+        font-size: 0.9rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+    .email input {
+        font-size: 0.8rem;
+    }
+
+    #some-service {
+        grid-column: 1 / -1;
+        padding-bottom: 35%;
+    }
+}
+    
+@media (min-width: 1024px) {
+    .normal {
+        display: inline;
+    }
+    .dropdown {
+        display: none;
+    }
+    
+    .info1 {
+        padding: 0% 20% 0% 20%;
+    }
+    .info2 {
+        padding: 0% 20% 0% 20%;
+    }
+    .info3 {
+        padding: 5% 25% 10% 25%;
+    }
+    .info4 {
+        padding: 0% 20% 0% 20%;
+    }
+    .vid {
+        padding-top: 10%;
+    }
+    .bio {
+        padding: 3% 20% 5% 20%;
+    }
+    .email {
+        padding: 5% 25% 5% 25%;
+    }
+    .newsbox {
+        padding: 0% 20% 20% 20%;
+    }
+
+}
+    
+@media (min-width: 1200px) {
+
+    .wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .wrapper2 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    header { 
+        grid-column: 1 / -1;
+    }
+    .bio {
+        grid-column: 1 / -1;
+        padding: 0% 25% 0% 25%;
+    }
+    .info1 {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 0% 20% 15% 20%;
+    }
+    .info2 {
+        grid-column: 2;
+        grid-row: 3;
+        padding: 0% 20% 15% 20%;
+    }
+    .info3 {
+        grid-column: 3;
+        grid-row: 3;
+        padding: 0% 20% 15% 20%;
+    }
+    .info4 {
+        grid-column: 2 / 4;
+        padding: 0% 10% 5% 10%;
+    }
+    .vid {
+        grid-column: 2 / 4;
+        padding: 0;
+    }
+    .dl {
+        grid-column: 2 / 4;
+    }
+    .laskuri {
+        grid-column: 2 / 4;
+    }
+    .email {
+        grid-column: 1 / -1;
+        padding: 3% 35% 5% 35%;
+    }
+    .newsbox {
+        grid-column: 1 / -1;
+        padding: 0% 28% 15% 28%;
+    }
+
+    .dropdown a {
+        font-size: 1.3rem;
+    }
+    .dropdown .dropbtn {
+        font-size: 1.2rem; 
+    }
+    p {
+        font-size: 1.2rem;
+    }
+    h4 {
+        font-size: 1.1rem;
+    }
+    h5 {
+        font-size: 1.4rem;
+    }
+    li {
+        font-size: 0.9rem;
+    }
+    .email input {
+        font-size: 0.8rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+    #seconds {
+        font-size: 1.2rem;
+    }
+    #some-service {
+        grid-row: 5;
+        padding-bottom: 25%;
+    }
+}

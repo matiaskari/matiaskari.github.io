@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block body %}
+
+&lt;h2 class=&quot;profile-name&quot;&gt;{{ user.get_full_name }}&lt;/h2&gt;
+&lt;img class=&quot;profile-pic&quot; src=&quot;{{ user.playerprofile.image }}&quot; alt=&quot;No picture available&quot;&gt;
+&lt;ul class=&quot;profile-list&quot;&gt;
+  &lt;li&gt;Username:&lt;/li&gt;
+  &lt;li&gt;Hometown:&lt;/li&gt;
+  &lt;li&gt;Country:&lt;/li&gt;
+  &lt;li&gt;Height:&lt;/li&gt;
+  &lt;li&gt;Weight:&lt;/li&gt;
+  &lt;li&gt;Salary Wish:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class=&quot;profile-list-info&quot;&gt;
+  &lt;li&gt;{{ user.username }}&lt;/li&gt;
+  &lt;li&gt;{{ user.playerprofile.hometown }}&lt;/li&gt;
+  &lt;li&gt;{{ user.playerprofile.country }}&lt;/li&gt;
+  &lt;li&gt;{{ user.playerprofile.height }}&lt;/li&gt;
+  &lt;li&gt;{{ user.playerprofile.weight }}&lt;/li&gt;
+  &lt;li&gt;{{ user.playerprofile.salary_wish }}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;profile-form-container&quot;&gt;
+  &lt;h3&gt;New post:&lt;/h3&gt;
+  &lt;form action=&quot;&quot; method=&quot;POST&quot; id=&quot;newpostform&quot;&gt;
+    {% csrf_token %}
+    {% for input_field in form %}
+    &lt;div class=&quot;single_field&quot;&gt;
+      &lt;label&gt;{{ input_field.label_tag }}&lt;/label&gt;
+      &lt;div class=&quot;input-field&quot;&gt;
+        {{ input_field }}
+      &lt;/div&gt;
+    &lt;/div&gt;
+    {% endfor %}
+    &lt;div&gt;
+      &lt;button type=&quot;submit&quot;&gt;Post&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;player-posts&quot;&gt;
+  &lt;ul&gt;
+    {% for post in user.playerprofile.player_posts.all %}
+    &lt;div&gt;
+      &lt;div class=&quot;post-heading&quot;&gt;&lt;strong&gt;{{ post.heading }}&lt;/strong&gt;&lt;/div&gt;
+      &lt;span&gt;{{ post.text }}&lt;/span&gt;
+    &lt;/div&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+{% endblock %}

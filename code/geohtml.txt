@@ -1,0 +1,94 @@
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Home | Renegeo&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;img/icon.png&quot; /&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css?family=Abel&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;div class=&quot;dropdown&quot;&gt;
+            &lt;button class=&quot;dropbtn&quot; onclick=&quot;drop()&quot;&gt;MENU
+                &lt;i class=&quot;fa fa-caret-down&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+            &lt;div class=&quot;dropdown-content&quot; id=&quot;valikko&quot;&gt;
+                &lt;a href=&quot;index.html&quot; class=&quot;active&quot;&gt;HOME&lt;/a&gt;
+                &lt;a href=&quot;about.html&quot;&gt;ABOUT&lt;/a&gt;
+                &lt;a href=&quot;contact.html&quot;&gt;CONTACT&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;normal&quot;&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href=&quot;index.html&quot; class=&quot;active&quot;&gt;HOME&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;about.html&quot;&gt;ABOUT&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;contact.html&quot;&gt;CONTACT&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+            function drop() {
+                document.getElementById(&quot;valikko&quot;).classList.toggle(&quot;show&quot;);
+            }
+            window.onclick = function (e) {
+                if (!e.target.matches('.dropbtn')) {
+                    var valikko = document.getElementById(&quot;valikko&quot;);
+                    if (valikko.classList.contains('show')) {
+                        valikko.classList.remove('show');
+                    }
+                }
+            }
+        &lt;/script&gt;
+    &lt;/nav&gt;
+    &lt;header&gt;
+        &lt;img class=&quot;banner&quot; src=&quot;img/banner1.png&quot; title=&quot;Geothermal energy&quot; alt=&quot;Banner photo&quot;&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;div class=&quot;wrapper&quot;&gt;
+            &lt;article class=&quot;bio&quot;&gt;
+                &lt;h5&gt;Geothermal energy&lt;/h5&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;info1&quot;&gt;
+                &lt;img src=&quot;img/leaf.png&quot; title=&quot;Environmentally friendly&quot; alt=&quot;Info icon&quot;&gt;
+                &lt;h4&gt;Helps you fight climate change&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Renewable source of energy&lt;/li&gt;
+                    &lt;li&gt;No need to build big view-obstructing buildings&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;info2&quot;&gt;
+                &lt;div class=&quot;infokuva2&quot;&gt;
+                    &lt;img src=&quot;img/money.png&quot; title=&quot;Easy on your wallet&quot; alt=&quot;Info icon&quot;&gt;
+                &lt;/div&gt;
+                &lt;h4&gt;Easy on your wallet&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Can cut your energy bills by up to 40%&lt;/li&gt;
+                    &lt;li&gt;Initial investment will pay itself off in a decade&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;info3&quot;&gt;
+                &lt;div class=&quot;infokuva3&quot;&gt;
+                    &lt;img src=&quot;img/thumb.png&quot; title=&quot;Carefree to operate&quot; alt=&quot;Info icon&quot;&gt;
+                &lt;/div&gt;
+                &lt;h4&gt;Carefree to operate&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Can run consistently 24/7&lt;/li&gt;
+                    &lt;li&gt;Very reliable&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/article&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Renegeo co.&lt;/li&gt;
+            &lt;li&gt;CS-C1180 Verkkojulkaisemisen perusteet&lt;/li&gt;
+            &lt;li&gt;&copy; Matias Kari&lt;/li&gt;
+            &lt;li&gt;525844&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
