@@ -1,0 +1,187 @@
+/*! csstools-normalize v9.0.1 | github.com/csstools/normalize.css */
+/* Comments removed and spacing edited to make CSS Normalize more concise */
+/* Size reduced from 387 lines of CSS code to just 46 lines, both numbers indluding comments */
+/* Original code at https://github.com/csstools/normalize.css/blob/master/normalize.css */
+
+html { line-height: 1.15; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+h1 { font-size: 2em; margin: 0.67em 0; }
+hr { box-sizing: content-box; /* 1 */ height: 0; /* 1 */ overflow: visible; /* 2 */ }
+main { display: block; }
+pre { font-family: monospace, monospace; /* 1 */ font-size: 1em; /* 2 */ }
+a { background-color: transparent; }
+abbr[title] { text-decoration: underline; text-decoration: underline dotted; }
+b, strong { font-weight: bolder; }
+code, kbd, samp { font-family: monospace, monospace; /* 1 */ font-size: 1em; /* 2 */ }
+small { font-size: 80%; }
+audio, video { display: inline-block; }
+audio:not([controls]) { display: none; height: 0; }
+img { border-style: none; }
+svg:not(:root) { overflow: hidden; }
+button, input, select { margin: 0; }
+button { overflow: visible; /* 1 */ text-transform: none; /* 2 */ }
+button, [type="button"], [type="reset"], [type="submit"] { -webkit-appearance: button; }
+fieldset { padding: 0.35em 0.75em 0.625em; }
+input { overflow: visible; }
+legend { box-sizing: border-box; color: inherit; display: table; max-width: 100%; white-space: normal; }
+progress { display: inline-block; /* 1 */ vertical-align: baseline; /* 2 */ }
+select { text-transform: none; }
+textarea { margin: 0; /* 1 */ overflow: auto; /* 2 */ }
+[type="checkbox"], [type="radio"] { box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ }
+[type="search"] { -webkit-appearance: textfield; /* 1 */ outline-offset: -2px; /* 2 */ }
+::-webkit-inner-spin-button, ::-webkit-outer-spin-button { height: auto; }
+::-webkit-input-placeholder { color: inherit; opacity: 0.54; }
+::-webkit-search-decoration { -webkit-appearance: none; }
+::-webkit-file-upload-button { -webkit-appearance: button; /* 1 */ font: inherit; /* 2 */ }
+::-moz-focus-inner { border-style: none; padding: 0; }
+:-moz-focusring { outline: 1px dotted ButtonText; }
+details { display: block; }
+dialog { background-color: white; border: solid; color: black; display: block; height: -moz-fit-content;
+    height: -webkit-fit-content; height: fit-content; left: 0; margin: auto; padding: 1em; position: absolute;
+    right: 0; width: -moz-fit-content; width: -webkit-fit-content; width: fit-content; }
+dialog:not([open]) { display: none; }
+summary { display: list-item; }
+canvas { display: inline-block; }
+template { display: none; }
+[hidden] { display: none; }
+/*! csstools-normalize v9.0.1 | github.com/csstools/normalize.css */
+
+html {
+    height: 100vh;
+    font-size: 1.4em;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+body {
+    margin: 0;
+    line-height: 1;
+    height: 100%;
+    width: 100%;
+    position: static;
+    background-color: rgb(230, 230, 230);
+}
+
+/* Fonts start */
+td {
+    font-size: 1em;
+}
+h3, th {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+h2 {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fonts end */
+
+/* Navigation bar start */
+nav {
+    background-color: #becaff;
+    border-style: solid;
+    border-bottom-width: 2px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: rgb(139, 139, 255);
+}
+.nav a {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px;
+}
+.nav a:hover {
+    color: #cecece;
+    background-color: #e8ecff;
+}
+.nav a:visited {
+    color: black;
+}
+.nav {
+    color: black;
+}
+/* Navigation bar end */
+
+/* Grid elements (and header + footer) start */
+header { 
+    width: 100%;
+}
+.banner {
+    width: 100%;
+    height: auto;
+}
+footer {
+    font-size: 1.1rem;
+    text-align: right;
+    background-color: #c0c0c0;
+    border-top: 2px solid #8194ff;
+    padding: 0 0.5rem;
+}
+
+/* Grid elements (and header + footer) end */
+
+.productTable {
+    border-collapse: collapse;
+    border: 0;
+    display: block;
+    width: 80vw;
+    text-align: center;
+}
+.productTable td, .productTable th {
+    border: 1px solid rgb(150, 150, 150);
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    padding: 10px;
+}
+.productTable tr:first-child {
+    border-bottom: 1;
+}
+.productTable tr:last-child td {
+    border-bottom: 0;
+}
+#dropdown {
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+
+.greenCell {
+    background-color: rgb(60, 189, 60);
+    border-radius: 15px;  
+}
+.yellowCell {
+    background-color: rgb(255, 230, 0);
+    border-radius: 15px;
+}
+.redCell {
+    background-color: rgb(228, 0, 0);
+    border-radius: 15px;
+}
+
+@media (min-width: 320px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+    
+@media (min-width: 1024px) {
+
+}
+    
+@media (min-width: 1200px) {
+    .productTable {
+        margin-left: 25%;
+        margin-right: -25%;
+        width: 50%;
+    }
+}
