@@ -129,13 +129,13 @@ body {
     text-align: center;
 }
 
-#basketball, #maalampo {
+#reaktor, #maalampo {
     grid-row: 1 / 3;
     grid-column: 1 / -1;
     margin: 2vh 8vw 0 8vw   ;
     text-align: center;
 }
-#basketball img, #maalampo img {
+#reaktor img, #maalampo img {
     width: 100%;
     max-width: 20em;
 }
@@ -253,7 +253,7 @@ pre {
         margin: 2vh 12vw 0 12vw;
     }
 
-    #basketball, #maalampo {
+    #reaktor, #maalampo {
         grid-column: 2 / 6;
     }
 
@@ -326,11 +326,11 @@ pre {
         margin: 2vh 7vw 0 7vw;
     }
 
-    #basketball {
+    #reaktor {
         grid-column: 2 / 4;
         margin: 0 3vw 5vh 3vw;
     }
-    #basketball img, #maalampo img {
+    #reaktor img, #maalampo img {
         max-width: 15em;
     }
     #maalampo {
