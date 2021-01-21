@@ -102,7 +102,7 @@ function displayData(availabilityData, categoryIndex) {
                 }
                 text += "</td>"
             }
-            text += "<td>" + products[n].price.toString() + "</td>";
+            text += "<td>" + products[n].price.toString() + "&euro;</td>";
             text += "<td>" + products[n].manufacturer.toString().charAt(0).toUpperCase() + products[n].manufacturer.toString().slice(1) + "</td>"; //Making the first letter uppercase
             if (findAvailableID[0].DATAPAYLOAD.toString() === "<AVAILABILITY>\n  <CODE>200</CODE>\n  <INSTOCKVALUE>INSTOCK</INSTOCKVALUE>\n</AVAILABILITY>") {
                 text += '<td class="greenCell">Available</td>';
