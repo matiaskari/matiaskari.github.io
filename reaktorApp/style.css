@@ -128,8 +128,10 @@ footer {
     border-collapse: collapse;
     border: 0;
     display: block;
-    width: 80vw;
+    width: auto;
     text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 .productTable td, .productTable th {
     border: 1px solid rgb(150, 150, 150);
@@ -167,18 +169,38 @@ footer {
 }
 
 @media (min-width: 320px) {
-
+    .productTable {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 0.6em;
+    }
 }
 
-@media (min-width: 768px) {
-
+@media (min-width: 612px) {
+    .productTable {
+        margin-left: 2em;
+        margin-right: 2em;
+        font-size: 0.8em;
+    }
 }
     
-@media (min-width: 1024px) {
-
+@media (min-width: 854px) {
+    .productTable {
+        margin-left: 4em;
+        margin-right: 4em;
+        font-size: 1em;
+    }
 }
     
 @media (min-width: 1200px) {
+    .productTable {
+        margin-left: 20%;
+        margin-right: -20%;
+        width: 60%;
+    }
+}
+
+@media (min-width: 1600px) {
     .productTable {
         margin-left: 25%;
         margin-right: -25%;

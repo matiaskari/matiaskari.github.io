@@ -28,41 +28,44 @@ function loadData() {
             if (response.ok) {
                 return response.json();
             }
-        })
-        .catch(err => console.error(err))
-    )).then(products => {
-        productData = products;
-        console.log("Product data fetched");
-        return productData;
-    }).then(item => { //Finding all manufacturers that appear in any of the 3 product categories
-        let manufacturers = [];
-        for (x in item) {
-            manufacturers.push(item[x].map(maker => maker.manufacturer).filter((value, index, self) => self.indexOf(value) === index));
-        }
-        var merged = [].concat.apply([], manufacturers).filter((value, index, self) => self.indexOf(value) === index); //Making an array that only contains the manufacturer names once
-        return merged;
-    }).then(makers => {
-        for (x in makers) {
-            manufacturerURLs.push(proxyURL + apiURL + availabilityURL + makers[x]); //Generating URLs to fetch all manufacturer data
-        }
-        console.log("Manufacturer URLs generated");
-        return manufacturerURLs;
-    }).then(data => getAvailabilityData(data))
+        }).catch(err => {
+            console.error(err);
+            listHTML.innerHTML = "Failed to load p-data, please refresh page";
+        }))).then(products => {
+            productData = products;
+            console.log("Product data fetched");
+            return productData;
+        }).then(item => { //Finding all manufacturers that appear in any of the 3 product categories
+            let manufacturers = [];
+            for (x in item) {
+                manufacturers.push(item[x].map(maker => maker.manufacturer).filter((value, index, self) => self.indexOf(value) === index));
+            }
+            var merged = [].concat.apply([], manufacturers).filter((value, index, self) => self.indexOf(value) === index); //Making an array that only contains the manufacturer names once
+            return merged;
+        }).then(makers => {
+            for (x in makers) {
+                manufacturerURLs.push(proxyURL + apiURL + availabilityURL + makers[x]); //Generating URLs to fetch all manufacturer data
+            }
+            console.log("Manufacturer URLs generated");
+            return manufacturerURLs;
+        }).then(data => getAvailabilityData(data))
         .catch(err => console.error(err));
 }
 
 function getAvailabilityData(manuURLs) {
     Promise.all(manuURLs.map(url => fetch(url) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
         .then(response => response.json())
-        .catch(err => console.error(err))
-    )).then(manufacturers => { //Creating an array that contains all availability data
-        console.log(manufacturers);
-        let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);
-        let mergedAvailabilityData = [].concat.apply([], mergedManufacturers).filter(x => x != "[]");
-        console.log("Availability data fetched");
-        listHTML.innerHTML = "<h3>Ready to choose category</h3>" + "<br>" + dropdownMenu; //Once all data has been fetched, showing the dropdown menu to the end user
-        availabilityData = mergedAvailabilityData;
-    }).catch(error => error.serverGetSearchError);
+        .catch(err => {
+            console.error(err);
+            listHTML.innerHTML = "Failed to load a-data, please refresh page";
+        }))).then(manufacturers => { //Creating an array that contains all availability data
+            console.log(manufacturers);
+            let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);
+            let mergedAvailabilityData = [].concat.apply([], mergedManufacturers).filter(x => x != "[]");
+            console.log("Availability data fetched");
+            listHTML.innerHTML = "<h3>Ready to choose category</h3>" + "<br>" + dropdownMenu; //Once all data has been fetched, showing the dropdown menu to the end user
+            availabilityData = mergedAvailabilityData;
+        }).catch(error => error.serverGetSearchError);
 }
 
 function chooseProduct(categoryIndex) { //This function is called by the dropdown menu and given the product category index as a parameter
