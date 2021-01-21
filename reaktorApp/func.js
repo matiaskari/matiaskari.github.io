@@ -30,7 +30,7 @@ function loadData() {
             }
         }).catch(err => {
             console.error(err);
-            listHTML.innerHTML = "Failed to load p-data, please refresh page";
+            listHTML.innerHTML = "Failed to load data, please refresh the page or try again later";
         }))).then(products => {
             productData = products;
             console.log("Product data fetched");
@@ -57,7 +57,7 @@ function getAvailabilityData(manuURLs) {
         .then(response => response.json())
         .catch(err => {
             console.error(err);
-            listHTML.innerHTML = "Failed to load a-data, please refresh page";
+            listHTML.innerHTML = "Failed to load data, please refresh the page or try again later";
         }))).then(manufacturers => { //Creating an array that contains all availability data
             console.log(manufacturers);
             let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);

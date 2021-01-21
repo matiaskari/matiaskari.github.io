@@ -57,7 +57,7 @@ body {
     height: 100%;
     width: 100%;
     position: static;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(250, 250, 250);
 }
 
 /* Fonts start */
@@ -79,30 +79,25 @@ h2 {
 
 /* Navigation bar start */
 nav {
-    background-color: #becaff;
-    border-style: solid;
-    border-bottom-width: 2px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-color: rgb(139, 139, 255);
+    background-color: #474747;
+    color: white;
 }
 .nav a {
     display: inline-block;
     white-space: nowrap;
     text-align: center;
     text-decoration: none;
-    padding: 5px;
+    padding: 20px;
 }
 .nav a:hover {
     color: #cecece;
-    background-color: #e8ecff;
+    background-color: #6b6b6b;
 }
 .nav a:visited {
-    color: black;
+    color: white;
 }
-.nav {
-    color: black;
+.nav a:link {
+    color: white;
 }
 /* Navigation bar end */
 
@@ -156,22 +151,24 @@ footer {
 
 
 .greenCell {
-    background-color: rgb(60, 189, 60);
-    border-radius: 15px;  
+    text-decoration: underline;
+    text-decoration-color: #3cbd3c;
 }
 .yellowCell {
-    background-color: rgb(255, 230, 0);
-    border-radius: 15px;
+    text-decoration: underline;
+    text-decoration-color: #ffe600;
 }
 .redCell {
-    background-color: rgb(228, 0, 0);
-    border-radius: 15px;
+    text-decoration: underline;
+    text-decoration-color: #e40000;
 }
 
 @media (min-width: 320px) {
     .productTable {
         margin-left: 0;
         margin-right: 0;
+    }
+    h2, h3 {
         font-size: 0.6em;
     }
 }
@@ -180,6 +177,8 @@ footer {
     .productTable {
         margin-left: 2em;
         margin-right: 2em;
+    }
+    h2, h3 {
         font-size: 0.8em;
     }
 }
@@ -188,6 +187,8 @@ footer {
     .productTable {
         margin-left: 4em;
         margin-right: 4em;
+    }
+    h2, h3 {
         font-size: 1em;
     }
 }
