@@ -53,8 +53,7 @@ function loadData() {
 }
 
 function getAvailabilityData(manuURLs) {
-    Promise.all(manuURLs.map(url => fetch(url) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
-        .then(response => response.json())
+    Promise.all(manuURLs.map(url => fetchRetry(url) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
         .catch(err => {
             console.error(err);
             listHTML.innerHTML = "Failed to load data, please refresh the page or try again later";
@@ -68,7 +67,20 @@ function getAvailabilityData(manuURLs) {
         }).catch(error => error.serverGetSearchError);
 }
 
-function chooseProduct(categoryIndex) { //This function is called by the dropdown menu and given the product category index as a parameter
+function fetchRetry(url) { //Sometimes a manufacturer's data returns "[]" instead of an Array of data. This will recursively retry fetching data until all manufacturers return an Array
+    return fetch(url).then(response => response.json())
+        .then(response => {
+            if (response.response === "[]") {
+                console.log("Empty manufacturer data fetch response. Retrying...")
+                return fetchRetry(url);
+            } else {
+                console.log("Manufacturer data fetch successful")
+            }
+            return response;
+        })
+}
+
+function chooseProduct(categoryIndex) { //This function is called by the dropdown menu and given the index of the product category as a parameter
     if (categoryIndex) {
         listHTML.innerHTML = "<h3>Finding products...</h3>";
         displayData(availabilityData, categoryIndex);
@@ -80,6 +92,7 @@ function chooseProduct(categoryIndex) { //This function is called by the dropdow
 function displayData(availabilityData, categoryIndex) {
     let categories = ["Gloves", "Facemasks", "Beanies"];
     let products = productData[categoryIndex]; //Using products from only the chosen category
+    console.log(categories[categoryIndex] + ": loading " + products.length + " items");
 
     //Generating the HTML table to show the data
     var text = "<table border='1' frame='void' rules='rows'><tr><th>Name</th><th>Color</th><th>Price</th><th>Manufacturer</th><th>Availability</th></tr>"
@@ -117,11 +130,8 @@ function displayData(availabilityData, categoryIndex) {
         }
     }
     text += "</table>"
-    listHTML.innerHTML = dropdownMenu + "<br><h3>" + categories[categoryIndex] + "</h3>" + text; //After generating the table, showing it to the user, along with the dropdown menu
+    listHTML.innerHTML = dropdownMenu + "<br><br><h2 style='font-size: 1.4em; font-weight: 500;'>" + categories[categoryIndex] + "</h2><br>" + text; //After generating the table, showing it to the user, along with the dropdown menu
 }
-
-
-
 
 
 //Example product data
