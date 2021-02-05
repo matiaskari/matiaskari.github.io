@@ -6,6 +6,7 @@ var productlistURL = '/v2/products/';
 var availabilityURL = '/v2/availability/';
 
 var listHTML = document.getElementById('list');
+var loadbarHTML = document.getElementById('loadBar');
 var dropdownMenu = '<select id="dropdown" onchange="chooseProduct(this.value)">' +
     '<option value="">Choose a product category:</option>' +
     '<option value="0">Gloves</option>' +
@@ -27,10 +28,12 @@ function loadData() {
         .then(response => {
             if (response.ok) {
                 return response.json();
+            } else {
+                listHTML.innerHTML = "<h3>" + response.status + ": " + response.statusText + "<br><br>Please refresh the page or try again in a few minutes</h3>";
             }
         }).catch(err => {
             console.error(err);
-            listHTML.innerHTML = "Failed to load data, please refresh the page or try again later";
+            listHTML.innerHTML = "<h3>Failed to load data, please refresh the page or try again later</h3>";
         }))).then(products => {
             productData = products;
             console.log("Product data fetched");
@@ -53,18 +56,20 @@ function loadData() {
 }
 
 function getAvailabilityData(manuURLs) {
-    Promise.all(manuURLs.map(url => fetchRetry(url) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
-        .catch(err => {
-            console.error(err);
-            listHTML.innerHTML = "Failed to load data, please refresh the page or try again later";
-        }))).then(manufacturers => { //Creating an array that contains all availability data
-            console.log(manufacturers);
-            let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);
-            let mergedAvailabilityData = [].concat.apply([], mergedManufacturers).filter(x => x != "[]");
-            console.log("Availability data fetched");
-            listHTML.innerHTML = "<h3>Ready to choose category</h3>" + "<br>" + dropdownMenu; //Once all data has been fetched, showing the dropdown menu to the end user
-            availabilityData = mergedAvailabilityData;
-        }).catch(error => error.serverGetSearchError);
+    Promise.all(manuURLs.map(url => {
+        return fetchRetry(url) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
+            .catch(err => {
+                console.error(err);
+                listHTML.innerHTML = "<h3>Failed to load data, please refresh the page or try again later</h3>";
+            });
+    })).then(manufacturers => { //Creating an array that contains all availability data
+        console.log(manufacturers);
+        let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);
+        let mergedAvailabilityData = [].concat.apply([], mergedManufacturers).filter(x => x != "[]");
+        console.log("Availability data fetched");
+        listHTML.innerHTML = "<h3>Please choose a category and then wait a moment</h3>" + "<br>" + dropdownMenu; //Once all data has been fetched, showing the dropdown menu to the end user
+        availabilityData = mergedAvailabilityData;
+    }).catch(error => error.serverGetSearchError);
 }
 
 function fetchRetry(url) { //Sometimes a manufacturer's data returns "[]" instead of an Array of data. This will recursively retry fetching data until all manufacturers return an Array
@@ -130,8 +135,12 @@ function displayData(availabilityData, categoryIndex) {
         }
     }
     text += "</table>"
-    listHTML.innerHTML = dropdownMenu + "<br><br><h2 style='font-size: 1.4em; font-weight: 500;'>" + categories[categoryIndex] + "</h2><br>" + text; //After generating the table, showing it to the user, along with the dropdown menu
+    listHTML.innerHTML = dropdownMenu + "<br><br><h2>" + categories[categoryIndex] + "</h2><br>" + text; //After generating the table, showing it to the user, along with the dropdown menu
 }
+
+//TODO:
+    //Fix CSS for mobile
+    //Add a GitHub readme
 
 
 //Example product data
