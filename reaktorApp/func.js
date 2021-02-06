@@ -85,23 +85,31 @@ function fetchRetry(url) { //Sometimes a manufacturer's data returns "[]" instea
         })
 }
 
-function chooseProduct(categoryIndex) { //This function is called by the dropdown menu and given the index of the product category as a parameter
+function chooseProduct(categoryIndex) { //This function is called by the product category selection dropdown menu and given the index of the product category as a parameter
     if (categoryIndex) {
-        listHTML.innerHTML = "<h3>Finding products...</h3>";
-        displayData(availabilityData, categoryIndex);
+        displayData(categoryIndex, 1); //Loading the first page of products by default
     } else {
         listHTML.innerHTML = "<h3>Choose a product category</h3>";
     }
 }
 
-function displayData(availabilityData, categoryIndex) {
+function choosePage(pageNumber, categoryIndex) { //This function is operated through the page selection dropdown menu, it reloads the product table with the selected page of items
+    displayData(categoryIndex, pageNumber);
+}
+
+function displayData(categoryIndex, pageNumber) {
     let categories = ["Gloves", "Facemasks", "Beanies"];
     let products = productData[categoryIndex]; //Using products from only the chosen category
     console.log(categories[categoryIndex] + ": loading " + products.length + " items");
+    var pageMenu = '<select id="dropdown" onchange="choosePage(this.value, ' + categoryIndex + ')"><option value="">Page:</option>'; //Creating a new page selector based on the amount of required pages
+    for (n = 0; n < products.length / 50; n++) {
+        pageMenu += '<option value="' + (n + 1) + '">' + (n + 1) + '</option>'
+    }
+    pageMenu += '</select>';
 
     //Generating the HTML table to show the data
     var text = "<table border='1' frame='void' rules='rows'><tr><th>Name</th><th>Color</th><th>Price</th><th>Manufacturer</th><th>Availability</th></tr>"
-    for (n = 0; n < products.length; n++) { //Looking at one product at a time
+    for (n = (pageNumber * 50) - 50; n < Math.min((pageNumber * 50), products.length); n++) { //Looking at one product at a time
         listHTML.innerHTML = "<h3>Getting products: " + (n + 1) + "/" + products.length + "</h3>";
         let findAvailableID = availabilityData.filter(x => x.id.toString() === products[n].id.toString().toUpperCase()); //Matching the specific product with the availability data that has the same ID
         if (findAvailableID.length > 0) { //If a matching ID was found
@@ -135,11 +143,11 @@ function displayData(availabilityData, categoryIndex) {
         }
     }
     text += "</table>"
-    listHTML.innerHTML = dropdownMenu + "<br><br><h2>" + categories[categoryIndex] + "</h2><br>" + text; //After generating the table, showing it to the user, along with the dropdown menu
+    listHTML.innerHTML = dropdownMenu + "<br><br><h2>" + categories[categoryIndex] + "</h2><br>" + text + "<br>" + pageMenu; //After generating the table, showing it to the user, along with the dropdown menu
 }
 
 //TODO:
-    //Fix CSS for mobile
+    //Fix CSS
     //Add a GitHub readme
 
 
