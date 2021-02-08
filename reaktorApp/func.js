@@ -1,6 +1,6 @@
 
 var apiURL = "https://bad-api-assignment.reaktor.com";
-var proxyURL = "https://cors-anywhere.herokuapp.com/";
+var proxyURL = "";
 
 var productlistURL = '/v2/products/';
 var availabilityURL = '/v2/availability/';
@@ -24,7 +24,7 @@ function loadData() {
     (proxyURL + apiURL + productlistURL + "facemasks"),
     (proxyURL + apiURL + productlistURL + "beanies")];
 
-    Promise.all(productURLs.map(url => fetch(url) //Fetching the product data from all 3 categories
+    Promise.allSettled(productURLs.map(url => fetch(url) //Fetching the product data from all 3 categories
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -37,6 +37,7 @@ function loadData() {
         }))).then(products => {
             productData = products;
             console.log("Product data fetched");
+            console.log(productData)
             return productData;
         }).then(item => { //Finding all manufacturers that appear in any of the 3 product categories
             let manufacturers = [];
@@ -67,13 +68,17 @@ function getAvailabilityData(manuURLs) {
         let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);
         let mergedAvailabilityData = [].concat.apply([], mergedManufacturers).filter(x => x != "[]");
         console.log("Availability data fetched");
-        listHTML.innerHTML = "<h3>Please choose a category and then wait a moment</h3>" + "<br>" + dropdownMenu; //Once all data has been fetched, showing the dropdown menu to the end user
+        listHTML.innerHTML = "<h3>Please choose a category</h3>" + "<br>" + dropdownMenu; //Once all data has been fetched, showing the dropdown menu to the end user
         availabilityData = mergedAvailabilityData;
     }).catch(error => error.serverGetSearchError);
 }
 
 function fetchRetry(url) { //Sometimes a manufacturer's data returns "[]" instead of an Array of data. This will recursively retry fetching data until all manufacturers return an Array
-    return fetch(url).then(response => response.json())
+    return fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+    }).then(response => response.json())
         .then(response => {
             if (response.response === "[]") {
                 console.log("Empty manufacturer data fetch response. Retrying...")
