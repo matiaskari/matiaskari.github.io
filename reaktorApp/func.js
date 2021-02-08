@@ -1,5 +1,5 @@
 
-var apiURL = "https://api.allorigins.win/raw?url=https://bad-api-assignment.reaktor.com";
+var apiURL = "https://api.allorigins.win/raw?url=https://bad-api-assignment.reaktor.com"; //allOrigins proxy to circumvent the CORS block
 
 var productlistURL = '/v2/products/';
 var availabilityURL = '/v2/availability/';
@@ -76,10 +76,13 @@ function fetchRetry(url, tries) { //Sometimes a manufacturer's data returns "[]"
     return fetch(url).then(response => response.json())
         .then(response => {
             if (response.response === "[]" && tries < 10) {
-                console.log("Empty manufacturer data fetch response. Retrying...")
+                console.log("Empty manufacturer data fetch response. Retrying...");
                 return fetchRetry(url, ++tries);
+            } else if (tries >= 10) {
+                console.log("Could not fetch data from " + url);
+                return response;
             } else {
-                console.log("Manufacturer data fetch successful")
+                console.log("Manufacturer data fetch successful");
             }
             return response;
         })
@@ -146,9 +149,6 @@ function displayData(categoryIndex, pageNumber) {
     listHTML.innerHTML = dropdownMenu + "<br><br><h2>" + categories[categoryIndex] + "</h2><br>" + text + "<br>" + pageMenu; //After generating the table, showing it to the user, along with the dropdown menu
 }
 
-//TODO:
-    //Fix CSS
-    //Add a GitHub readme
 
 
 //Example product data
