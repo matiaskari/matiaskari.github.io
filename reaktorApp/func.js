@@ -1,6 +1,5 @@
 
-var apiURL = "https://bad-api-assignment.reaktor.com";
-var proxyURL = "";
+var apiURL = "https://api.allorigins.win/raw?url=https://bad-api-assignment.reaktor.com";
 
 var productlistURL = '/v2/products/';
 var availabilityURL = '/v2/availability/';
@@ -20,11 +19,11 @@ function loadData() {
     listHTML.innerHTML = "<h3>Loading, please wait...</h3>"; //Not showing the dropdown menu at all before all data is loaded in so the end user can't try to get data before it has been loaded in
 
     let manufacturerURLs = [];
-    let productURLs = [(proxyURL + apiURL + productlistURL + "gloves"),
-    (proxyURL + apiURL + productlistURL + "facemasks"),
-    (proxyURL + apiURL + productlistURL + "beanies")];
+    let productURLs = [(apiURL + productlistURL + "gloves"),
+    (apiURL + productlistURL + "facemasks"),
+    (apiURL + productlistURL + "beanies")];
 
-    Promise.allSettled(productURLs.map(url => fetch(url) //Fetching the product data from all 3 categories
+    Promise.all(productURLs.map(url => fetch(url) //Fetching the product data from all 3 categories
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -48,7 +47,7 @@ function loadData() {
             return merged;
         }).then(makers => {
             for (x in makers) {
-                manufacturerURLs.push(proxyURL + apiURL + availabilityURL + makers[x]); //Generating URLs to fetch all manufacturer data
+                manufacturerURLs.push(apiURL + availabilityURL + makers[x]); //Generating URLs to fetch all manufacturer data
             }
             console.log("Manufacturer URLs generated");
             return manufacturerURLs;
@@ -58,7 +57,7 @@ function loadData() {
 
 function getAvailabilityData(manuURLs) {
     Promise.all(manuURLs.map(url => {
-        return fetchRetry(url) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
+        return fetchRetry(url, 0) //Fetching all manufacturer data from manufacturers that appeared at least once in any product data
             .catch(err => {
                 console.error(err);
                 listHTML.innerHTML = "<h3>Failed to load data, please refresh the page or try again later</h3>";
@@ -73,16 +72,12 @@ function getAvailabilityData(manuURLs) {
     }).catch(error => error.serverGetSearchError);
 }
 
-function fetchRetry(url) { //Sometimes a manufacturer's data returns "[]" instead of an Array of data. This will recursively retry fetching data until all manufacturers return an Array
-    return fetch(url, {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-    }).then(response => response.json())
+function fetchRetry(url, tries) { //Sometimes a manufacturer's data returns "[]" instead of an Array of data. This will recursively retry fetching data until all manufacturers return an Array
+    return fetch(url).then(response => response.json())
         .then(response => {
-            if (response.response === "[]") {
+            if (response.response === "[]" && tries < 10) {
                 console.log("Empty manufacturer data fetch response. Retrying...")
-                return fetchRetry(url);
+                return fetchRetry(url, ++tries);
             } else {
                 console.log("Manufacturer data fetch successful")
             }
