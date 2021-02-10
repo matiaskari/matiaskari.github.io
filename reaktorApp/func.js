@@ -5,7 +5,6 @@ var productlistURL = '/v2/products/';
 var availabilityURL = '/v2/availability/';
 
 var listHTML = document.getElementById('list');
-var loadbarHTML = document.getElementById('loadBar');
 var dropdownMenu = '<select id="dropdown" onchange="chooseProduct(this.value)">' +
     '<option value="">Choose a product category:</option>' +
     '<option value="0">Gloves</option>' +
@@ -36,7 +35,6 @@ function loadData() {
         }))).then(products => {
             productData = products;
             console.log("Product data fetched");
-            console.log(productData)
             return productData;
         }).then(item => { //Finding all manufacturers that appear in any of the 3 product categories
             let manufacturers = [];
@@ -63,7 +61,6 @@ function getAvailabilityData(manuURLs) {
                 listHTML.innerHTML = "<h3>Failed to load data, please refresh the page or try again later</h3>";
             });
     })).then(manufacturers => { //Creating an array that contains all availability data
-        console.log(manufacturers);
         let mergedManufacturers = [].concat.apply([], manufacturers).map(x => x.response);
         let mergedAvailabilityData = [].concat.apply([], mergedManufacturers).filter(x => x != "[]");
         console.log("Availability data fetched");
@@ -82,7 +79,7 @@ function fetchRetry(url, tries) { //Sometimes a manufacturer's data returns "[]"
                 console.log("Could not fetch data from " + url);
                 return response;
             } else {
-                console.log("Manufacturer data fetch successful");
+                console.log("Manufacturer data fetch complete");
             }
             return response;
         })
@@ -104,8 +101,8 @@ function displayData(categoryIndex, pageNumber) {
     let categories = ["Gloves", "Facemasks", "Beanies"];
     let products = productData[categoryIndex]; //Using products from only the chosen category
     console.log(categories[categoryIndex] + ": loading " + products.length + " items");
-    var pageMenu = '<select id="dropdown" onchange="choosePage(this.value, ' + categoryIndex + ')"><option value="">Page:</option>'; //Creating a new page selector based on the amount of required pages
-    for (n = 0; n < products.length / 50; n++) {
+    var pageMenu = '<select id="dropdown" onchange="choosePage(this.value, ' + categoryIndex + ')"><option value="">Page:</option>'; //Creating a new page selector dropdown menu based on the amount of required pages
+    for (n = 0; n < products.length / 50; n++) { //Generating the right amount of options for the page selection menu
         pageMenu += '<option value="' + (n + 1) + '">' + (n + 1) + '</option>'
     }
     pageMenu += '</select>';
